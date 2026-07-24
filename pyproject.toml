@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "agent-bridge"
+version = "0.1.0"
+description = "LAN peer-to-peer agent communication bridge for AI agents (currently Hermes-only)"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "watchdog>=3.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+scp = []  # scp is a system command, no Python dep needed
+
+[project.scripts]
+agent-bridge = "hermes_bridge.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["hermes_bridge*"]

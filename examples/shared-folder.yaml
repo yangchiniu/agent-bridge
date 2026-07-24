@@ -1,0 +1,17 @@
+# Agent A using shared folder (no SSH needed)
+name: "Hermes-A"
+
+directories:
+  inbox:  "/mnt/shared/inbox"
+  outbox: "/mnt/shared/outbox"
+  archive: "/mnt/shared/archive"
+
+transport:
+  type: shared
+  shared_inbox: "/mnt/shared/peer/inbox"  # Remote agent's inbox via shared folder
+
+agent:
+  type: hermes
+  command: "hermes"
+
+agent_timeout: 180

@@ -1,0 +1,21 @@
+# Agent B (Windows)
+name: "Hermes-Windows"
+
+directories:
+  inbox:  "D:/HERMES/peer/inbox"
+  outbox: "D:/HERMES/peer/outbox"
+  archive: "D:/HERMES/peer/archive"
+
+transport:
+  type: scp
+  host: "192.168.1.1"
+  user: "lbwnb666"
+  port: 22
+  # key: "C:/Users/10238/.ssh/id_ed25519"  # optional
+
+agent:
+  type: hermes
+  command: "hermes"
+  extra_args: []
+
+agent_timeout: 180

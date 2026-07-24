@@ -1,0 +1,21 @@
+# Agent A (Linux)
+name: "Hermes-Linux"
+
+directories:
+  inbox:  "./inbox"
+  outbox: "./outbox"
+  archive: "./archive"
+
+transport:
+  type: scp
+  host: "192.168.1.12"
+  user: "10238"
+  port: 22
+  # key: "~/.ssh/id_ed25519"  # optional
+
+agent:
+  type: hermes
+  command: "hermes"
+  extra_args: []
+
+agent_timeout: 180
