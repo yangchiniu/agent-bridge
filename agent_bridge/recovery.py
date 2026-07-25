@@ -10,7 +10,7 @@ def run_with_recovery(command: list[str], restart_delay: int = 5, max_restarts: 
     """Run a command and restart it on exit.
 
     Args:
-        command: The command to run (e.g., ["python", "-m", "hermes_bridge", "--run"])
+        command: The command to run (e.g., ["python", "-m", "agent_bridge", "--run"])
         restart_delay: Seconds to wait before restarting
         max_restarts: Maximum number of restarts before giving up (0 = unlimited)
     """
@@ -43,8 +43,8 @@ def run_with_recovery(command: list[str], restart_delay: int = 5, max_restarts: 
 
 
 if __name__ == "__main__":
-    # Default: run hermes_bridge module
-    cmd = [sys.executable, "-m", "hermes_bridge", "--run"]
+    # Default: run agent_bridge module
+    cmd = [sys.executable, "-m", "agent_bridge", "--run"]
     if len(sys.argv) > 1:
         cmd = sys.argv[1:]
     run_with_recovery(cmd)

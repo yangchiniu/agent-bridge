@@ -1,4 +1,4 @@
-"""CLI entry point for hermes-bridge."""
+"""CLI entry point for agent-bridge."""
 
 import argparse
 import logging
@@ -7,7 +7,7 @@ from pathlib import Path
 
 from .bridge import Bridge
 from .message import MessageType
-from .classifier import Classifier
+from .classifier import Classifier, ClassifierConfig
 from .transport.scp import SCPTransport
 from .transport.shared import SharedTransport
 from .agent import HermesAgent, CLIAgent
@@ -65,6 +65,9 @@ def build_bridge(config: dict) -> Bridge:
     else:
         raise ValueError(f"Unknown agent type: {agent_cfg['type']}")
 
+    # Build classifier
+    classifier_cfg = ClassifierConfig.from_dict(config.get("classifier", {}))
+
     return Bridge(
         name=me,
         inbox_dir=inbox,
@@ -72,7 +75,7 @@ def build_bridge(config: dict) -> Bridge:
         archive_dir=archive,
         transport=transport,
         agent=agent,
-        classifier=Classifier(),
+        classifier=Classifier(classifier_cfg),
         agent_timeout=config.get("agent_timeout", 180),
     )
 
@@ -131,7 +134,7 @@ def main():
 
     if args.command == "run":
         if args.with_recovery:
-            run_with_recovery([sys.executable, "-m", "hermes_bridge", "-c", args.config, "run"])
+            run_with_recovery([sys.executable, "-m", "agent_bridge", "-c", args.config, "run"])
         else:
             cmd_run(args)
     elif args.command == "send":

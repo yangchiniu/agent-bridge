@@ -15,10 +15,10 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-scp = []  # scp is a system command, no Python dep needed
+dev = ["pytest>=7.0"]
 
 [project.scripts]
-agent-bridge = "hermes_bridge.__main__:main"
+agent-bridge = "agent_bridge.__main__:main"
 
 [tool.setuptools.packages.find]
-include = ["hermes_bridge*"]
+include = ["agent_bridge*"]
